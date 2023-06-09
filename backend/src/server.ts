@@ -2,14 +2,18 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import path from 'node:path';
 import rootRouter from './routes/root';
-import { logger } from './middlewares/logger';
+import { logger, logEvents } from './middlewares/logger';
 import errorHandler from './middlewares/errorHandler';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import corsOptions from './config/corsOptions';
+import connectToDatabase from './config/mongooseService';
+import mongoose from 'mongoose';
 
 // Configure dotenv to use variables from .env file
 dotenv.config();
+
+connectToDatabase();
 
 // Initialize express app
 const app: Express = express();
@@ -39,4 +43,15 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB');
+  app.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
+});
+
+mongoose.connection.on('error', (error) => {
+  console.log(error);
+  logEvents(
+    `${error.no}: ${error.code}\t${error.syscall}\t${error.hostname}`,
+    'mongodbErrorLog.log'
+  );
+});
