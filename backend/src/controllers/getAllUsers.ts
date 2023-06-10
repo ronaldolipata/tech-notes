@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
-import { UserType } from '../types/User';
+import User from '@/models/User';
+import { UserType } from '@/types/User';
 
 // @desc Get all users
 // @route GET /users

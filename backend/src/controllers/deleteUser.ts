@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
-import Note from '../models/Note';
-import { UserType } from '../types/User';
-import { NoteType } from '../types/Note';
+import User from '@/models/User';
+import Note from '@/models/Note';
+import { UserType } from '@/types/User';
+import { NoteType } from '@/types/Note';
 
 // @desc Delete a user
 // @route DELETE /users

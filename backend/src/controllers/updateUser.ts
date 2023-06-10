@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
-import { UserType } from '../types/User';
+import User from '@/models/User';
+import { UserType } from '@/types/User';
 import bcrypt from 'bcrypt';
 
 // @desc Update a user

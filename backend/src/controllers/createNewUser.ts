@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
+import User from '@/models/User';
 import bcrypt from 'bcrypt';
-import { UserType } from '../types/User';
+import { UserType } from '@/types/User';
 
 // @desc Create a new user
 // @route POST /users
