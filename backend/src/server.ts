@@ -9,6 +9,7 @@ import cors from 'cors';
 import corsOptions from './config/corsOptions';
 import connectToDatabase from './config/mongooseService';
 import mongoose from 'mongoose';
+import userRoutes from './routes/userRoutes';
 
 // Configure dotenv to use variables from .env file
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(cors(corsOptions));
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', rootRouter);
+app.use('/users', userRoutes);
 
 app.all('*', (req, res) => {
   res.status(404);
