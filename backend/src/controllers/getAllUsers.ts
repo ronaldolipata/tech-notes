@@ -9,6 +9,7 @@ export async function getAllUsers(_: Request, res: Response) {
   try {
     const users: UserType[] = await User.find().select('-password').lean();
 
+    // Check for users
     if (!users?.length) {
       return res.status(400).json({
         success: false,

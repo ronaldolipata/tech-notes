@@ -21,24 +21,9 @@ export async function createNewUser(req: Request, res: Response) {
       });
     }
 
-    // Check if existing user
-    const existingUser: UserType | null = await User.findOne({ username })
-      .lean()
-      .exec();
-
-    // Return an error if username is existing
-    if (existingUser) {
-      return res.status(409).json({
-        success: false,
-        code: 409,
-        error: {
-          message: 'Username already exists',
-        },
-      });
-    }
-
     // Hash the password
     const hashedPassword: string = await bcrypt.hash(password, 10); // salt rounds
+
     const userObject: UserType = {
       username,
       password: hashedPassword,
@@ -65,7 +50,7 @@ export async function createNewUser(req: Request, res: Response) {
       success: true,
       code: 201,
       data: {
-        message: `New user of ${username} has been created`,
+        message: `${username} has been created`,
       },
     });
   } catch (error) {
