@@ -11,13 +11,9 @@ export default function errorHandler(
     `${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`,
     'errorLog.log'
   );
+
   console.log(err.stack);
-
   const status: number = res.statusCode ? res.statusCode : 500; // server error
-
-  res.status(status);
-
-  res.json({ message: err.message });
-
+  res.status(status).json({ message: err.message });
   next();
 }
