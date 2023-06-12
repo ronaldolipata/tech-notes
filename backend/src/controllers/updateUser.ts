@@ -10,7 +10,6 @@ import { UserExtendedRequest } from '@/types/UserExtendedRequest';
 export async function updateUser(req: UserExtendedRequest, res: Response) {
   try {
     const { username, roles, active, password }: UserType = req.body;
-    const { id }: { id: string } = req.body;
 
     let hashedPassword: string = '';
 
@@ -31,7 +30,7 @@ export async function updateUser(req: UserExtendedRequest, res: Response) {
 
     // Try to update the user and pass the value to updatedUser variable
     const updatedUser: UserType | null = await User.findByIdAndUpdate(
-      { _id: id },
+      { _id: req.id },
       userObject,
       {
         new: true,
