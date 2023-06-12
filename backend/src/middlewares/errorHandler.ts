@@ -13,7 +13,7 @@ export default function errorHandler(
   );
   console.log(err.stack);
 
-  const status = res.statusCode ? res.statusCode : 500; // server error
+  const status: number = res.statusCode ? res.statusCode : 500; // server error
 
   res.status(status);
 

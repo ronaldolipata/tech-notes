@@ -9,8 +9,8 @@ const logEvents = async (
   message: string,
   logFileName: string
 ): Promise<void> => {
-  const dateTime = format(new Date(), 'yyyyMMdd\tHH:mm:ss');
-  const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
+  const dateTime: string = format(new Date(), 'yyyyMMdd\tHH:mm:ss');
+  const logItem: string = `${dateTime}\t${uuid()}\t${message}\n`;
 
   try {
     if (!fs.existsSync(path.join(__dirname, '..', '..', 'logs'))) {

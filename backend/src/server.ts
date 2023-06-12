@@ -18,7 +18,7 @@ connectToDatabase();
 
 // Initialize express app
 const app: Express = express();
-const PORT = process.env.PORT || 3000;
+const PORT: string | number = process.env.PORT || 3000;
 
 // Global middlewares
 app.use(logger);

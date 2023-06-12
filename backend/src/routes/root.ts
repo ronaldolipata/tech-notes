@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import path from 'node:path';
 
-const router = Router();
+const router: Router = Router();
 
 // Using RegEx, this will only runs if the requested route starts or ends with '/' or '/index' or '/index.html'
 router.get('^/$|/index(.html)?', (_, res: Response) => {

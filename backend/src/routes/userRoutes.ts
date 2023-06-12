@@ -9,7 +9,7 @@ import { searchById } from '@/middlewares/searchById';
 import { objectIdValidation } from '@/middlewares/objectIdValidation';
 import { usernameValidation } from '@/middlewares/usernameValidation';
 
-const router = Router();
+const router: Router = Router();
 
 router
   .route('/')
